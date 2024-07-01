@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Upload Curriculum Acivitiy
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/upload_marks.css' %}">
+{% endblock style %}
+
+{% block content %}
+<section class="upload-marks-box py-2">
+    <h2 class="text-center py-3">Add Curriculum</h2>
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-10 col-lg-9 col-xl-8 mx-auto">
+                <div id="form-bg" class="bg-primary bg-opacity-10 rounded p-3 p-sm-5">
+                    <form method="post" action="{% url 'curriculum' %}" id="curriculum-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="activity-wrapper" class="form-group py-2">
+                            <label for="id_activity" class="form-label">Activity:</label>
+                            {{ form.activity }}
+                        </div>
+                
+                        <div class="new-activity-wrapper form-group py-2">
+                            <label for="id_new_activity" class="form-label new-activity-label">New Activity Name:</label>
+                            {{ form.new_activity }}
+                        </div> 
+                        
+                        <div class="form-group py-2">
+                            <label for="id_description" class="form-label">Description:</label>
+                            {{ form.description }}
+                        </div>
+                
+                        <div class="form-group py-2">
+                            <label for="id_certificate" class="form-label">Certificate:</label>
+                            {{ form.certificate }}
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button id="submitForm" type="submit" class="btn btn-primary w-100">Submit</button>
+                        </div>
+                    </form>
+                    <div id="formMessage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <script>
+        $(document).ready(function() {
+            $('.new-activity-wrapper').hide(); // Hide the new activity field initially
+
+            $('#id_activity').on('change', function() {
+                if ($(this).val() === '1') {
+                    $('.new-activity-wrapper').show(); // Show the new activity field if 'Other' is selected
+                } else {
+                    $('.new-activity-wrapper').hide(); // Hide otherwise
+                }
+            });
+
+            // Add Bootstrap classes to form fields
+            $('form input[type="text"]').addClass('form-control');
+            $('form textarea').addClass('form-control');
+            $('form select').addClass('form-control');
+
+            // Add ID to the input field
+            $('input[name="activity"]').attr('id', 'id_activity');
+
+            $('#curriculum-form').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+                console.log(formData)
+
+                // Disable the send button
+                $("#submitForm").prop("disabled", true);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/curriculum',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $("#formMessage").text(response.message).css("color", "green");
+                        $("#curriculum-form")[0].reset();
+                    },
+                    error: function(error) {
+                        $("#formMessage").text(response.message).css("color", "red");
+                    },
+                    complete: function() {
+                        // Re-enable the submit button after completion (success or error)
+                        $("#submitForm").prop("disabled", false);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock content %}

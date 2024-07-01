@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Password Reset
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/reset_password.css'%}">
+{% endblock style %}
+
+{% block content %}
+<section class="reset-password-page p-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card p-2">
+          <div class="card-body text-center">
+            <h2 class="text-center mb-4">Password Reset Sent <img class="d-inline-block" src="https://ik.imagekit.io/edudealio/EduDealio/emoji-image/email.png?updatedAt=1700048053258" alt="" style="width:70px;"></h2>
+            <p>We've emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly.</p>
+            <p>If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder.</p>
+            <a href="{% url 'password_reset' %}">Re-submit your email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+{% endblock content %}

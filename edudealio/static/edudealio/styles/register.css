@@ -1,0 +1,9 @@
+#form-bg{
+    box-shadow: 0 2px 4px #3e1604;
+}
+
+.input-data input:focus{
+    box-shadow: none;
+    border-bottom: 0.2rem solid #3498db;
+    transition   : 0.3s ease all;
+}

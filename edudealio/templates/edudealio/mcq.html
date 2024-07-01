@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    MCQ Questions
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/mcq.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <section class="mcq-content">
+        <div class="container my-4">
+            <div class="row justify-content-center">
+                <h2>MCQ Questionnaire</h2>
+                <div id="points-container">
+                    <p id="points" class="p-3">Points: 0</p>
+                </div>
+                <div class="col-md-8">
+                    <div id="mcq-container">
+                        <div id="question" class="m-2">
+                            <!-- Question will be loaded here dynamically -->
+                        </div>
+                        <div id="options-container" class="mt-5 mb-3 row d-flex justify-content-center">
+                            <!-- Options will be loaded here dynamically -->
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button id="submit-button" class="btn btn-outline-info p-2 px-4 fw-bold">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+
+            const mcqContainer = $('#mcq-container');
+            const questionDiv = $('#question');
+            const optionsContainer = $('#options-container');
+            const submitButton = $('#submit-button');
+            
+            const mcqData = JSON.parse('{{ mcq_data|escapejs }}');
+
+            let currentQuestionIndex = 0;
+            var points = 0;
+
+            function updatePoints() {
+                $('#points').text('Points: ' + points);
+            }
+
+            function loadQuestion(index) {
+                const mcq = mcqData[index];
+                questionDiv.text(mcq.question);
+
+                optionsContainer.empty(); // Clear previous options
+                mcq.options.forEach((option, i) => {
+                    const optionDiv = $('<div>', { class: 'custom-option col-5 p-2 mx-2 my-2' });
+                    optionDiv.text(option);
+                    optionDiv.on('click', function () {
+                        selectOption(i);
+                    });
+                    optionsContainer.append(optionDiv);
+                });
+            }
+
+            function selectOption(index) {
+                const options = optionsContainer.find('.custom-option');
+                options.removeClass('selected');
+                options.eq(index).addClass('selected');
+            }
+
+            // Get the CSRF token from the cookie
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            // Get the CSRF token
+            var csrfToken = getCookie('csrftoken');
+
+            function sendPointsToServer(points) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/mcqdata',  // Replace with the actual URL to your server
+                    data: {
+                        'points': points,
+                        'csrfmiddlewaretoken': csrfToken,
+                    },
+                    success: function (response) {
+                        // Handle the response from the server if needed
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        // Handle any errors
+                        console.error(error);
+                    }
+                });
+            }
+
+            function showNextQuestion() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < mcqData.length) {
+                    loadQuestion(currentQuestionIndex);
+                } else {
+                    if (points > 0) {
+                        mcqContainer.html('<h2 class="text-success">Congratulaitons! You have earned '+points+' points.</h2><p class="text-success">All questions answered.</p>');
+                    } else {
+                        mcqContainer.html('<p class="text-success">All questions answered.</p>');
+                    };
+                    submitButton.prop('disabled', true);
+                    // Send the points to the server
+                    sendPointsToServer(points);
+                }
+            }
+
+            submitButton.on('click', function (event) {
+                event.preventDefault();
+
+                const selectedOption = optionsContainer.find('.custom-option.selected');
+                if (selectedOption.length > 0) {
+                    const userAnswer = selectedOption.text();
+                    const correctAnswer = mcqData[currentQuestionIndex].correctAnswer;
+
+                    if (userAnswer === correctAnswer) {
+                        selectedOption.addClass('correct');
+                        points++;
+                        updatePoints();
+                    } 
+                    else {
+                        selectedOption.addClass('incorrect');
+
+                        // Display the correct answer
+                        optionsContainer.find('.custom-option').each(function (i, option) {
+                            if ($(option).text() === correctAnswer) {
+                                $(option).addClass('correct');
+                            }
+                        });
+                    }
+
+                    submitButton.prop('disabled', true); // Disable the submit button
+                    setTimeout(function () {
+                        showNextQuestion();
+                        submitButton.prop('disabled', false); // Re-enable the submit button
+                    }, 2000);
+                } else {
+                    alert('Please select an option before proceeding.');
+                }
+            });
+
+            // Initialize with the first question
+            loadQuestion(currentQuestionIndex);
+        });
+    </script>
+{% endblock content %}

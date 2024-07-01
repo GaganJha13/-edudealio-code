@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Share
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/refer_share.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-2 refer-page-bg g-4 mt-2">
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h1>Get Rewarded:</h1>
+                <h2><span class="text-danger">Earn 5 Points</span> for Every Referral!</h2>
+                <div>
+                    <p> Sharing is caring! Spread the word and reap the benefits. Invite your friends and earn points with every referral you make.</p>
+                    <p>Here's your exclusive referral link to share:</p>
+                    <div class="input-group mb-3">
+                        <input type="text" id="referralLink" class="form-control" value="{{ share_url }}" readonly>
+                        <div class="input-group-append">
+                            <button id="copyButton" class="btn btn-primary" type="button">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 img-col">
+            <div class="skew-img">
+                <div class="refer-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'edudealio/js/refer_share.js' %}"></script>
+{% endblock content%}

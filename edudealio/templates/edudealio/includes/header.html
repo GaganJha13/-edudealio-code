@@ -1,0 +1,128 @@
+{% load static %}
+
+<header class="navbar-light navbar-sticky header-static">
+	<div class="navbar-top d-none d-lg-block small">
+		<div class="container">
+			<div class="d-md-flex justify-content-between align-items-center my-2">
+				<!-- Top bar left -->
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link ps-0" href="{% url 'about' %}">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'support' %}">Support</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'refer' %}">Share & Earn!</a>
+					</li>
+				</ul>
+
+				<!-- Top bar right -->
+				<ul class="nav">
+					{% if user.is_authenticated %}
+					<li class="nav-item ">
+						<p class="nav-link px-2 py-0 fs-6 my-0 ">
+							<span class="bg-warning bg-opacity-10 rounded p-2 mx-2 px-3 fw-bold text-dark">
+								<i class="fa-solid fa-wallet mx-2" style="font-size:24px;color:#4f5063"></i>
+								{% with student_data=request.user.studentdashboarddatamodel %}
+									{% if student_data %} 
+										{{ student_data.active_points }}
+									{% else %}
+									{% endif %}
+								{% endwith %}
+							</span>
+							<span class="bg-primary bg-opacity-10 rounded p-2 px-3 fw-bold text-dark">
+								<i class="fa-solid fa-user mx-1 mr-2" style="font-size:24px;color:#4f5063"></i> 
+								{{ request.user|title }}
+							</span>
+						</p>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link px-2 fs-5" href="#"><i class="fa-brands fa-facebook-f" style="font-size:24px;color:black"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link px-2 fs-5" href="#"><i class="fa-brands fa-twitter" style="font-size:24px;color:black"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link px-2 fs-5" href="#"><i class="fa-brands fa-linkedin" style="font-size:24px;color:black"></i></a>
+					</li>
+					{% endif %}
+					{% comment %} <li class="nav-item">
+						<a class="nav-link px-2 fs-5" href="#"><i class="fa fa-youtube-play" style="font-size:24px;color:black"></i></a>
+					</li> {% endcomment %}
+					{% comment %} <li class="nav-item">
+						<a class="nav-link ps-2 pe-0 fs-5" href="#"><i class="fa fa-vimeo-square" style="font-size:24px;color:black"></i></a>
+					</li> {% endcomment %}
+				</ul>
+			</div>
+			<!-- Divider -->
+			<div class="border-bottom border-2 border-primary opacity-1"></div>
+		</div>
+	</div>
+
+	<!-- Logo Nav START -->
+	<nav class="navbar navbar-expand-lg">
+		<div class="container">
+			<!-- Logo START -->
+			<a class="navbar-brand" href="{% url 'homepage' %}">
+				<img width="150" height="80" class="navbar-brand-item light-mode-item" src="https://ik.imagekit.io/edudealio/EduDealio/Logo/logo-lightbg.png?updatedAt=1697892716119" alt="logo">			
+			</a>
+			<!-- Logo END -->
+
+			<!-- Responsive navbar toggler -->
+			<button class="navbar-toggler ms-auto collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="text-body fs-5 d-none d-sm-inline-block">
+					{% if user.is_authenticated %}
+						Hi {{request.user|title}}!
+					{% else %}
+						Menu
+					{% endif %}
+				</span>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Main navbar START -->
+			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
+				<ul class="navbar-nav navbar-nav-scroll mx-auto">
+
+					<!-- Nav item 1 Demos -->
+					<li class="nav-item"> <a class="nav-link fs-5" href="{% url 'homepage' %}">Home</a></li>
+
+					<!-- Nav item 2 Pages -->
+					<li class="nav-item dropdown customDropdown">
+						<a class="nav-link dropdown-toggle fs-5" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Uploads</a>
+                        <div class="dropdown-menu myDropdown">
+                            <a class="dropdown-item" href="{% url 'uploadmarks' %}">Academic Achievements</a>
+                            <a class="dropdown-item" href="{% url 'curriculum'%}">Curricular Achievements</a>
+                            <a class="dropdown-item" href="{% url 'standardize-test' %}">Standardized Test Scores</a>
+                            {% comment %} <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Other</a> {% endcomment %}
+                        </div>
+					</li>
+
+					<!-- Nav item 3 Post -->
+					<li class="nav-item"> <a class="nav-link text-danger fs-5" href="{% url 'questionnaire' %}">Quiz!</a></li>
+
+					<!-- Nav item 5 link-->
+					<li class="nav-item"> <a class="nav-link fs-5" href="{% url 'dashboard' %}">Dashboard</a></li>
+					<li class="nav-item">
+						{% if user.is_authenticated %}<a class="nav-link active fs-5" href="{% url 'logout'%}">Logout</a>{%else%}<a class="nav-link active fs-5" href="/login#login-box">Login / Join</a>{% endif %}
+					</li>
+				</ul>
+			</div>
+			<!-- Main navbar END -->
+
+			<!-- Nav right START -->
+			<div class="nav flex-nowrap align-items-center">
+				<!-- Nav Button -->
+				<div class="nav-item d-none d-md-block">
+					<a href="#subscribe-form" class="btn btn-md mb-0 mx-2" style="background:#F25611;color:white;">Subscribe!</a>
+				</div>
+				<!-- Nav Search -->
+			</div>
+			<!-- Nav right END -->
+		</div>
+	</nav>
+	<!-- Logo Nav END -->
+</header>

@@ -1,0 +1,58 @@
+#form-bg{
+    box-shadow: 0 2px 4px #3e1604;
+}
+
+.input-data input:focus{
+    box-shadow: none;
+    border-bottom: 0.2rem solid #3498db;
+    transition   : 0.3s ease all;
+}
+
+/* input:not(:placeholder-shown) {
+    background-color:  white!important;
+ }
+ 
+ 
+ input:placeholder-shown {
+    background-color:  #ffffff!important;
+ } */
+
+
+
+/* .input-data input:after{
+    content      : '';
+    border-bottom: 0.2rem solid #3498db;
+    transform    : scaleX(0);
+    transition   : transform 300ms ease-in-out;
+}
+
+.input-data input:hover:after {
+    transform: scaleX(1);
+} */
+
+/* .input-data{
+    position: relative;
+}
+
+.input-data .underline{
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+  }
+  .input-data .underline:before{
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background: #3498db;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+  .input-data input:focus ~ .underline:before,
+  .input-data input:valid ~ .underline:before,
+  .textarea textarea:focus ~ .underline:before,
+  .textarea textarea:valid ~ .underline:before{
+    transform: scale(1);
+  } */

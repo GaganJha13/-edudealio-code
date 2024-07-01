@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'edudealio/styles/about.css'%}">
+{% endblock style %}
+
+{% block content %}
+<section class="about-section">
+    <div class="container py-5">
+        <div class="row gy-5 pt-5 mx-2">                
+            <div class="content-column col-lg-6 col-12 order-2 py-5">
+                <div class="inner-column">
+                    <div class="sec-title">
+                        <span class="title">EduDealio - Where Learning Earns Rewards!</span>
+                        <h2>Empowering Achievement, Rewarding Success</h2>
+                    </div>
+                    <div class="text">
+                        At EduDealio, we are dedicated to empowering students on their educational journey by recognizing and celebrating their achievements beyond conventional measures. We believe in fostering a community where every student's accomplishments matter. <span class="text-warning fs-5">Our platform is more than just a rewards system; it's a supportive ecosystem designed to elevate students' academic pursuits.</span>
+                    </div>
+                    <div class="text">
+                        We understand that success isn't just measured by grades—it's about dedication, curiosity, and the relentless pursuit of knowledge. EduDealio goes beyond traditional metrics to acknowledge the diverse talents and efforts of each student, offering recognition for their unique journey.
+                    </div>
+                    <div class="btn-box">
+                        <a href="{% url 'register' %}" class="theme-btn btn-style-one p-2 rounded my-3">Join Us</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Column -->
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column wow fadeInLeft">
+                    <div class="author-desc">
+                        <h2>About Us</h2>
+                        <span>EduDealio Team</span>
+                    </div>
+                    <figure class="image-1 ml-5 mr-0"><a href="{% url 'homepage'%}" class="lightbox-image" data-fancybox="images"><img title="team" src="https://ik.imagekit.io/edudealio/EduDealio/Team/startup-593341_1920%20(1).jpg?updatedAt=1701028653999" alt=""></a></figure>                
+               </div>
+            </div>          
+        </div>
+        <div class="row mx-1 gy-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="sec-title">
+                    <span class="title">Our Mission</span>
+                    <h3>Let's inspire learning!</h3>
+                </div>
+                <div class="text moving-content-down">
+                    <p>EduDealio strives to incentivize and motivate students by offering a unique rewards system that values academic excellence, participation in quizzes, curriculum achievements, and referrals. We aim to inspire continuous learning and growth while providing exciting opportunities for students to earn rewards for their hard work and dedication.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
+                <div class="sec-title">
+                    <span class="title">How It Works</span>
+                    <h3>Learn and Earn!</h3>
+                </div>
+                <div class="text moving-content-down">
+                    <p>Our platform leverages students' academic achievements, curriculum accomplishments, and consistent engagement with quizzes to reward their dedication. By solving quizzes, achieving academic milestones, referring friends, and engaging in daily learning activities, students accumulate points that unlock a variety of valuable offers.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="sec-title">
+                    <span class="title">Student-Centric Approach</span>
+                    <h3>Secure and Trustworthy!</h3>
+                </div>
+                <div class="text moving-content-down">
+                    <p>We prioritize students' interests and success above all else. EduDealio employs student data to recognize their efforts, providing rewards on various academic and relevant platforms. Our commitment to confidentiality and ethical data use ensures a secure and trustworthy environment for all users.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
+                <div class="sec-title">
+                    <span class="title">Our Commitment</span>
+                    <h3>Encourage Learning!</h3>
+                </div>
+                <div class="text moving-content-down">
+                    <p>EduDealio is committed to fostering a culture of learning, encouraging academic growth, and empowering students to reach their full potential. We continuously innovate to bring exciting opportunities and valuable offers to our student community.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="sec-title">
+                    <span class="title">Join EduDealio Today</span>
+                    <h3 class="join">Start Rewarding Journey!</h3>
+                </div>
+                <div class="text moving-content-down">
+                    <p>Join us on this rewarding educational journey. Whether you're a passionate learner, a quiz enthusiast, or someone aiming for academic excellence, EduDealio welcomes you to a platform that celebrates your achievements and rewards your dedication.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

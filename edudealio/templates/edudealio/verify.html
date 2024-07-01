@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Verify Registration
+{% endblock %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+<section class="otp-verification">
+    <div class="bg-primary bg-opacity-10 container verify px-4 py-5 my-5 text-center">
+        {% comment %} <img class="d-block mx-auto mb-4 p-2 bg-light rounded" src="{% static 'tronicxservices/images/working.png' %}" alt="" width="125" height="120"> {% endcomment %}
+        <div class="col-lg-6 mx-auto">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <div class="card p-4 text-center"> 
+                    <h6>Please enter the one time password 
+                        <br> to verify your account
+                    </h6>
+                    <div> 
+                        <span>A code has been sent to</span> <small>{{email}}</small> 
+                    </div> 
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
+                            <input class="value m-2 text-center form-control rounded" type="text" id="value1" name="value1" maxlength="1" /> 
+                            <input class="value m-2 text-center form-control rounded" type="text" id="value2" name="value2" maxlength="1" /> 
+                            <input class="value m-2 text-center form-control rounded" type="text" id="value3" name="value3" maxlength="1" /> 
+                            <input class="value m-2 text-center form-control rounded" type="text" id="value4" name="value4" maxlength="1" /> 
+                            <input class="value m-2 text-center form-control rounded" type="text" id="value5" name="value5" maxlength="1" /> 
+                            <input class="value m-2 text-center form-control rounded" type="text" id="value6" name="value6" maxlength="1" /> 
+                        </div> 
+                        {% if messages %}
+                            {% for message in messages %}
+                                {{message}}
+                            {% endfor %}
+                        {% endif %}
+                        <div class="mt-4"> 
+                            <button class="btn px-4 validate" style="background:#F25611;color:white;">Validate</button> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<section>
+
+<script src="{% static 'edudealio/js/verify.js' %}"></script>
+
+{% endblock %}

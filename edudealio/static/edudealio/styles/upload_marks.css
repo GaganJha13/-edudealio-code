@@ -1,0 +1,36 @@
+.upload-marks-box{
+    background-image: linear-gradient(to right, #f0f2f0, #afe3b6);
+}
+
+#form-bg{
+    box-shadow: 0 2px 4px #455b48;
+}
+
+.basic-info, #custom-school-name-field, .subject-marks{
+    border-radius: 1rem;
+    background-color: white;
+}
+
+.basic-info label, #custom-school-name-field label, .subject-marks label {
+    font-weight: bold;
+}
+
+.basic-info input[type="text"], .register-school input[type="text"], .subject-marks input[type="text"],
+.basic-info select, #custom-school-name-field select, .subject-marks select{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.add-subject-button{
+    width: 100%;
+}
+
+button#add-form[type="button"], .remove-form, button#submit[type="submit"]{ 
+    padding: 10px 20px; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.5s;
+}

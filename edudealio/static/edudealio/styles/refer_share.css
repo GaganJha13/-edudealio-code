@@ -1,0 +1,22 @@
+.img-col {
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    height: 30rem;
+}
+.skew-img .refer-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: skewY(-10deg); /* Adjust the angle as needed */
+    background-image: url("https://ik.imagekit.io/edudealio/EduDealio/emoji-image/share_refer.jpg?updatedAt=1701512152784");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+}
+
+.refer-page-bg{
+    background-color:rgb(227, 238, 248);
+}

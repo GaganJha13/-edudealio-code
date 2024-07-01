@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Homepage
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/homepage.css'%}">
+{% endblock style %}
+
+{% block content %}
+<section class="quiz-advertisement">
+  <div class="advertisement-bar">
+    <p class="fs-5 text-white fw-bold m-2 pt-4">Unlock your potential and earn up to 5 POINTS with each QUIZ! <a href="{% url 'questionnaire' %}" class="link-warning">Let's Go!</a></p>
+    <a href="#" class="close-btn btn btn-dark py-1 px-3 mb-3">x</a>
+  </div>
+</section>
+<section class="top container mt-3">
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item" style="height:25vh">
+          <img width="100%" height="100%" src="https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/banner.png?updatedAt=1697893425548" alt="">
+          <div class="container">
+              <div class="carousel-caption">
+                  <p class="fs-5">Upto <span class="fw-bold text-warning">75% off</span> on all courses on achievement of <span class="text-warning">100-150 points</span>.</p>
+              </div>
+          </div>
+        </div>
+        <div class="carousel-item" style="height:25vh">
+          <img width="100%" height="100%" src="https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/banner.png?updatedAt=1697893425548" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <p class="fs-5">Limited Time Offer - Get upto <span class="fw-bold text-warning">50% off</span> on collecting <span class="text-warning">50 points</span> before 30th-Nov-2023.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item active" style="height:25vh">
+          <img width="100%" height="100%" src="https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/banner.png?updatedAt=1697893425548" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <p class="fs-5">Collect <span class="text-warning">80 points</span> and get upto <span class="fw-bold text-warning">60-70% off</span> on Must Have Styles on Myntra.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</section>
+<section class="top-offers container">
+  <div class="album pt-3 pb-2">
+      <h2 class="pb-2 border-bottom">Today's Top Offers</h2>     
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col mb-3">
+              <div class="card shadow-sm">
+                  <img class="card-img-top" width="100%" height="100%" src="https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/leestudent.png?updatedAt=1697893426025" alt="top offers background image">
+                  <div class="coupon-points d-flex text-white text-shadow-1">
+                      <img src="https://ik.imagekit.io/edudealio/EduDealio/Logo/logoicon-nobg.png?updatedAt=1697892716249" alt="Bootstrap" width="50" height="50" class="rounded-circle border border-white bg-white">
+                      <small class="p-2 m-2" style="background: #F25611">Coupon points</small>
+                  </div>
+              </div>
+          </div>
+          <div class="col mb-3">
+              <div class="card shadow-sm">
+                  <img class="card-img-top" width="100%" height="100%" src="https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/myntra1.png?updatedAt=1697893426029" alt="">
+                  <div class="coupon-points d-flex text-white text-shadow-1">
+                      <img src="https://ik.imagekit.io/edudealio/EduDealio/Logo/logoicon-nobg.png?updatedAt=1697892716249" alt="Bootstrap" width="50" height="50" class="rounded-circle border border-white bg-white">
+                      <small class="p-2 m-2" style="background: #F25611">Coupon points</small>
+                  </div>
+              </div>
+          </div>
+          <div class="col mb-3">
+              <div class="card shadow-sm">
+                  <img class="card-img-top" width="100%" height="100%" src="https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/wrangler.png?updatedAt=1697893426038" alt="">
+                  <div class="coupon-points d-flex text-white text-shadow-1">
+                      <img src="https://ik.imagekit.io/edudealio/EduDealio/Logo/logoicon-nobg.png?updatedAt=1697892716249" alt="Bootstrap" width="50" height="50" class="rounded-circle border border-white bg-white">
+                      <small class="p-2 m-2" style="background: #F25611">Coupon points</small>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<section class="login-signup container">
+  <div class="my-5">
+      <div class="firework-background p-2 py-5 text-center rounded-3">
+          <h2 class="pb-2 text-light">Student Savings Await!</h2>
+          {% if user.is_authenticated %}
+          <a href="{% url 'questionnaire' %}" class="text-decoration-none"><h3 class="text-warning moving-text">Dive into quizzes, rack up points, and unlock exclusive rewards.<span class="arrow"><i class="bi bi-chevron-double-right"></i></span></h3></a>
+          {% else %}
+          <p class="col-lg-8 mx-auto fs-5 text-light">
+            Unlock incredible savings with our exclusive coupons – get yours now and enjoy big discounts.
+          </p>
+          <div class="d-inline-flex gap-2 mb-2">
+              <a href="/login#login-box"><button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" type="button">
+                  Login
+              </button></a>
+              <a href="/register#registration-box"><button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" type="button">
+                  Signup
+              </button></a>
+          </div>
+          {% endif %}
+      </div>
+    </div>
+</section>
+<section class="mega-points-offers container">
+  <div class="pricing-header py-3 mx-auto text-justify">
+      <h2 class="pb-2 border-bottom">Mega Points Collection Offers</h2>
+      <p class="fs-5 text-body-secondary">Maximize Your Benefits with Our Mega Points Collection Offers!</p>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 my-5 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">50 Points</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pointoffer-card-title">5% <small class="text-body-secondary fw-light">off</small></h1>
+            <img width='70%' height="80%" class="bg-white p-2 m-3" src="https://ik.imagekit.io/edudealio/EduDealio/Logo/Myntra-Logo.png?updatedAt=1697892716094" alt="">
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Activate cashback</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">80 Points</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pointoffer-card-title">10% <small class="text-body-secondary fw-light">off</small></h1>
+                <img width='70%' height="80%" class="bg-white p-2 m-3" src="https://ik.imagekit.io/edudealio/EduDealio/Logo/duolingo-logo.png?updatedAt=1697892716252" alt="">
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Activate cashback</button>
+              </div>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-bg-primary">
+                <h4 class="my-0 fw-normal">100 Points</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pointoffer-card-title">25% <small class="text-body-secondary fw-light">off</small></h1>
+                <img width='70%' height="80%" class="bg-white p-2 m-3" src="https://ik.imagekit.io/edudealio/EduDealio/Logo/coursera-logo.png?updatedAt=1697892716104" alt="">
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Activate cashback</button>
+              </div>
+          </div>
+      </div>
+    </div>
+</section>
+
+<script src="{% static "edudealio/js/questionnaire.js" %}"></script>
+{% endblock content %}

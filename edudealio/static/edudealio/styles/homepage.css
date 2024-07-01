@@ -1,0 +1,63 @@
+.top-offers .col{
+    position: relative;
+}
+
+.top-offers .col .coupon-points{
+    position: absolute;
+    bottom: -10%;
+    right: -2%;
+}
+
+.login-signup .firework-background{
+    background: url("https://ik.imagekit.io/edudealio/EduDealio/Homepage/images/firework.jpg?updatedAt=1697897408508");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+}
+
+.quiz-advertisement{
+    position: relative;
+}
+  
+.advertisement-bar {
+    background-color: #f93b3b;
+    padding: 8px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+}
+
+.close-btn{
+    position: absolute;
+    top:5%;
+    right:0.5%;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+}
+  
+.close-btn:hover {
+    color: #000; /* Change color on hover if desired */
+}
+
+.arrow {
+    display: inline-block;
+    animation: arrowMovement 1s infinite alternate; /* Adjust animation as needed */
+    transition: transform 0.3s ease-in-out;
+}
+  
+@keyframes arrowMovement {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(10px); /* Adjust distance of movement */
+    }
+}

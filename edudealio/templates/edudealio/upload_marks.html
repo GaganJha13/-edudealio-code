@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Upload Marks
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/upload_marks.css' %}">
+{% endblock style %}
+
+{% block content %}
+<section class="upload-marks-box score-page-bg py-2">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-10 col-lg-9 col-xl-8 mx-auto">
+                <div id="form-bg" class="bg-primary bg-opacity-10 rounded p-3 p-sm-5">
+                    <form id="upload-form" method="post" action="{% url 'uploadmarks' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h2 class="my-3">Basic Info</h2>
+                        <p style="font-size: 14px; color: #777; margin-bottom: 20px;">Note: Use Ctrl (control button) to select multiple options.</p>
+                        <div class="basic-info pt-4 pb-2 px-4 mt-2 mb-5">
+                            {{ student_form.as_p }}
+                        </div>
+                        <div id="custom-school-name-field" class="py-4 px-4 mt-2 mb-5" style="display: none;">
+                            <h3 class="mt-2 mb-4">Register your School</h3>
+                            <label for="{{ custom_school_form.custom_school_name.id_for_label }}">Custom School Name:</label>
+                            {{ custom_school_form.custom_school_name }}
+                        </div>
+                        <!-- Subject and Percentage Formset -->
+                        <h2 class="mt-1 mb-3">Subject and Marks</h2>
+                        <div class="subject-marks pt-4 pb-2 px-4 mt-2 mb-4">
+                            {{ subject_percentage_formset.management_form }}
+                            <div id="formset-container">
+                                {% for form in subject_percentage_formset %}
+                                <div class="form-row">
+                                    {{ form.as_p }}
+                                    <div class="d-flex justify-content-end m-2">
+                                        <button type="button" class="remove-form fw-bold btn btn-danger">Remove</button>
+                                    </div>
+                                    <hr>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="add-subject-button row d-flex justify-content-center my-4">
+                                <button type="button" class="col-md-10 fw-bold btn btn-outline-success" id="add-form">Add Subject</button>
+                            </div>  
+                        </div>
+                        <div class="my-3 form-check">
+                            <input id="check-terms" type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="check-terms">By clicking, I confirm that the above information is correct and verified by my institute. I understand that providing incorrect information may result in account removal and disciplinary action by the organization.</label>
+                        </div>    
+                        <div class="add-student-button row d-flex justify-content-center">                
+                            <button id="submit" type="submit" class="col-12 btn btn-primary fw-bold">Add Student</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script>
+        $(document).ready(function() {
+            let formsetContainer = $('#formset-container');
+            let addButton = $('#add-form');
+            let formCount = {{ subject_percentage_formset.total_form_count }};
+            let formsetTotalForms = $("#id_subject_percentage-TOTAL_FORMS")
+            const schoolSelect = $('#id_school');
+            const customSchoolNameField = $('#custom-school-name-field');
+            const submitButton = $('#submit');
+        
+            addButton.on('click', function() {
+                let newForm = $('#empty-form').html().replace(/__prefix__/g, formCount);
+                formsetContainer.append(newForm);
+                formCount++;
+                formsetTotalForms.val(formCount); // Update the TOTAL_FORMS count
+                console.log('Total Forms Count:', formsetTotalForms.val()); // Log the count
+            });
+        
+            formsetContainer.on('click', '.remove-form', function() {
+                $(this).closest('.form-row').remove();
+                formCount--;
+                formsetTotalForms.val(formCount); // Update the TOTAL_FORMS count
+                console.log('Total Forms Count:', formsetTotalForms.val()); // Log the count
+            });
+        
+             // Show the custom school name field if "Other" is selected
+            schoolSelect.on('change', function() {
+                if (schoolSelect.val() === '1') {
+                    customSchoolNameField.show();
+                } else {
+                    customSchoolNameField.hide();
+                }
+            });
+
+            // Disable "Add Student" button initially
+            submitButton.prop('disabled', true);
+
+            function inputcheck() {
+                if ($("#id_roll_number").val() && $("#id_semester").val() && $("#id_exam_certificate").val()) {
+                    return "send";
+                }
+            }
+            $("#upload-form").on('input', function(){
+                check = inputcheck()
+                if (check === "send"){
+                    $("#submit").prop('disabled', false);
+                }
+                else {
+                    $("#submit").prop('disabled', true);
+                };
+            });
+        });
+    </script>
+
+    <script id="empty-form" type="text/form">
+        <div class="form-row">
+            {{ subject_percentage_formset.empty_form.as_table }}
+            <div class="d-flex justify-content-end m-2">
+                <button type="button" class="remove-form fw-bold btn btn-danger">Remove</button>
+            </div>
+            <hr>
+        </div>
+    </script>
+{% endblock content %}

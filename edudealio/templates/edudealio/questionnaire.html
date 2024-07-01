@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Questionnaire
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/questionnaire.css'%}">
+{% endblock style %}
+
+{% block content %}
+    <section id="form-container" class="questionnaire-form-content">
+        <div class="d-flex justify-content-center align-items-center" style="width:100vw;height:70vh;"> 
+            <div class="questionnaire-form-bg form-container bg-primary bg-opacity-10 rounded p-3 p-sm-5">
+                <form class="form-group" method="POST" action="{% url 'questionnaire' %}" id="questionnaire-form">
+                    {% csrf_token %}
+                    <div class="questionnaire-topic-form">
+                        {{ questionnaire_form.as_p }}
+                    </div>
+                    <div class="start-mcq-button row d-flex justify-content-center">
+                        <button type="submit" id="submit" class="btn btn-primary btn-block">Get Set Solve
+                            <span class="arrow"><i class="bi bi-caret-right"></i></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="spinning-loader">
+        <div id="loading-page" style="display: none;">
+            <div class ="text-center p-3 m-3">
+                <!-- Loading page content (e.g., loading spinner or message) -->
+                <h3>Get set! The quiz is about to kick off any moment now.</h3>
+                <p>
+                    Seeking assistance? Don't hesitate to connect with us for lightning-fast support at one click! <a href="{% url 'support' %}">Help and Support</a>.
+                </p>
+                <div class='d-flex align-items-center justify-content-center'>
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            // Get the CSRF token from the cookie
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            $("#questionnaire-form").on("submit", function (event) {
+                event.preventDefault();
+        
+                // Show the loading page
+                $("#form-container").hide();
+                $("#loading-page").show();
+
+                // Retrieve values using the IDs you assigned
+                var questionClass = $("#question_class").val();
+                var topic = $("#topic").val();
+                
+                // Get the CSRF token
+                var csrfToken = getCookie('csrftoken');
+        
+                // Submit the form using AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'questionnaire' %}",
+                    data: {
+                        'question_class': questionClass,
+                        'topic': topic,
+                        'csrfmiddlewaretoken': csrfToken,
+                    },
+                    success: function (response) {
+                        // Redirect to the page with MCQ questions
+                        window.location.href = "{% url 'mcq' %}";
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock content %}

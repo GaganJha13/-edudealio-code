@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <!-- Bootstrap CSS (adjust the path according to your project setup) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .row{
+            height: 100vh;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row content d-flex align-items-center justify-content-center">
+            <div class="col-12">
+                <h1>🔍</h1>
+                <h1 class="mt-5">Oops! Page Not Found</h1>
+                <p>Sorry, the page you are looking for does not exist.</p>
+                <p>Feel free to navigate to our <a href="{% url 'homepage' %}">homepage</a> or <a href="{% url 'support' %}">contact support</a> for assistance.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

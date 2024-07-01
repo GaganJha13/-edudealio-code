@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>502 Bad Gateway</title>
+    <!-- Bootstrap CSS (adjust the path according to your project setup) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .row{
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row content d-flex align-items-center justify-content-center">
+            <div class="col-12">
+                <h1>📛</h1>
+                <h1 class="mt-5">502 Bad Gateway</h1>
+                <p>Oops! The server received an invalid response from another server.</p>
+                <p>Please try refreshing the page or come back later.</p>
+                <p><a href="{% url 'homepage' %}">Go to Homepage</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

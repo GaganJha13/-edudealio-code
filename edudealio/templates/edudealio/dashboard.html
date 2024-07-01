@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'edudealio/styles/dashboard.css' %}">
+{% endblock style %}
+
+{% block content %}
+<section class="dashboard-data">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-8 col-12">
+                <canvas id="myChart"></canvas>
+                <div class="container offers px-4 py-5" id="featured-3">
+                    <h2 class="pb-2 border-bottom">Offers for You</h2>
+                    <div class="row g-5 py-5 row-cols-1 row-cols-lg-2 d-flex justify-content-around">
+                        {% for offer in offers %}
+                        <div class="feature offer-col col border border-2 rounded border-secondary px-4 mx-1 py-5 text-center" style="width:290px">
+                            <div class="feature-icon d-inline-flex align-items-center border rounded justify-content-center bg-gradient fs-2 mb-3">
+                                <img width='70%' height="80%" class="bg-white p-2 m-3" src="{{offer.img_url}}" alt="">
+                            </div>
+                            <h3 class="fs-5 text-body-emphasis">{{offer.title}}</h3>
+                            <p>{{offer.brand}}</p>
+                            <a href="#" class="icon-link bg-danger p-2 link-light border rounded">
+                                Claim Offer
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </div>      
+            <div class="col-md-4 col-12">
+                <h2 class="pb-2 border-bottom">Points Collection</h2>
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="col-12">
+                        <div class="card comp-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-b-25">Active Points</h6>
+                                        <h3 class="f-w-700" style="color:#ffb64d">{{user.studentdashboarddatamodel.active_points}}</h3>
+                                        <p class="m-b-0">Today</p>
+                                    </div>
+                                    <div class="col-auto star">
+                                        <i class="bi bi-star-fill p-3" style="color:white;background-color:#ffb64d;font-size: 2.5em;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card comp-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-b-25">Total Points</h6>
+                                        <h3 class="f-w-700" style="color:#4099ff">{{user.studentdashboarddatamodel.total_points}}</h3>
+                                        <p class="m-b-0">Till today</p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-patch-check p-3" style="color:white;background-color:#4099ff;font-size: 2.5em;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card comp-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-b-25">Uploads Count</h6>
+                                        <h3 class="f-w-700" style="color:#2ed8b6">{{user.studentdashboarddatamodel.uploads}}</h3>
+                                        <p class="m-b-0">Till today</p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-archive-fill p-3" style="color:white;background-color:#2ed8b6;font-size: 2.5em;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card comp-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-b-25">Offers Avail</h6>
+                                        <h3 class="f-w-700" style="color:#ff5370">{{user.studentdashboarddatamodel.offers_avail}}</h3>
+                                        <p class="m-b-0">Till today</p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-gift-fill p-3" style="color:white;background-color:#ff5370;font-size: 2.5em;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var labels = {{ labels|safe }};
+    var data_points = {{ data }};
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Active Points',
+            data: data_points,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }    
+    });
+</script>
+{% endblock content %}

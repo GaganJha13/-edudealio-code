@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Support
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'edudealio/styles/support.css' %}">
+{% endblock style %}
+
+{% block content %}
+<section class="top-banner">
+    <div class="container col-xxl-8 px-4 pt-2 pb-3">
+        <div class="row flex-lg-row-reverse align-items-center g-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img src="https://ik.imagekit.io/edudealio/EduDealio/emoji-image/support-man.png?updatedAt=1700472002597" class="d-block mx-lg-auto img-fluid" alt="support person image" width="700" height="500" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <h2 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Help Desk 📝</h2>
+            <p class="lead">Got questions or need assistance? Our support team is here to help! Whether it's about maximizing your points, redeeming offers, or any other queries, we've got you covered. Reach out to us for personalized support tailored to your student offers experience.</p>
+            <div class="d-grid gap-2 d-flex justify-content-md-start justify-content-center">
+              <a href="#form-email"><button type="button" class="btn btn-md btn-lg px-4 me-md-2" style="background:#F25611;color:white;">Contact Us</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+<section class="contactus-form">
+    <div class="container col-xxl-8 px-4 pb-5" id="contactusdetail">
+        <div class="pt-5 text-center">
+            <h3 class="display-7 fw-bold text-body-emphasis lh-1 mb-3">CONTACT DETAILS</h3>
+        </div>
+        <div class="row flex-lg-row-reverse align-items-center g-5 pt-5" id="form-email">
+            <div class="col-lg-6" id="message-box">
+                <div class="container">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            {% csrf_token %}
+                            <div class="form-group p-2">
+                                <input type="text" class="form-control p-2" id="name" placeholder="Your Name">
+                            </div>
+                            <div class="form-group p-2">
+                                <input type="email" class="form-control p-2" id="email" placeholder="Your Email">
+                            </div>
+                            <div class="form-group p-2">
+                                <input type="text" class="form-control p-2" id="subject" placeholder="Subject">
+                            </div>
+                            <div class="form-group p-2">
+                                <textarea class="form-control" id="message" placeholder="Your Message" rows="5"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" id="sendMessageBtn" class="btn btn-primary m-2 p-2 w-100">Send Message</button>
+                            </div>
+                        </form>
+                        <div id="formMessage"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="container px-4 py-5" id="hanging-icons">
+                    <div class="row g-4 py-5 row-cols-1">
+                        <div class="col d-flex align-items-start">
+                            <div class="text-center">
+                                <h3 class="fs-2 text-body-emphasis">
+                                    <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope-paper-fill envelope-icon" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M6.5 9.5 3 7.5v-6A1.5 1.5 0 0 1 4.5 0h7A1.5 1.5 0 0 1 13 1.5v6l-3.5 2L8 8.75l-1.5.75ZM1.059 3.635 2 3.133v3.753L0 5.713V5.4a2 2 0 0 1 1.059-1.765ZM16 5.713l-2 1.173V3.133l.941.502A2 2 0 0 1 16 5.4v.313Zm0 1.16-5.693 3.337L16 13.372v-6.5Zm-8 3.199 7.941 4.412A2 2 0 0 1 14 16H2a2 2 0 0 1-1.941-1.516L8 10.072Zm-8 3.3 5.693-3.162L0 6.873v6.5Z"/>
+                                        </svg>
+                                    </div>                                    
+                                    Email
+                                </h3>
+                                <p class="lead">Feel free to reach out to us via email at <a href="mailto:team@edudealio.com">team@edudealio.com</a> for any inquiries, questions, or feedback. We're here to assist you!</p>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+<script src="{% static 'edudealio/js/support.js'%}"></script>
+{% endblock content %}

@@ -1,0 +1,35 @@
+#featured-3 .row .offer-col{
+    position: relative;
+}
+
+.offers .offer-col .icon-link{
+    position: absolute;
+    bottom: 5%;
+    left:30%;
+}
+
+.icon-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.icon-link .arrow {
+    margin-left: 4px; /* Adjust the spacing as needed */
+    transform: translateX(0);
+    transition: transform 0.2s;
+}
+
+.icon-link:hover .arrow {
+    transform: translateX(5px); /* Adjust the desired distance for the movement */
+}
+
+/* Optional: Add styles for the link text */
+.icon-link .text {
+    margin-right: 8px; /* Adjust the spacing as needed */
+}
+
+.offers .offer-col{
+    box-shadow: 0 2px 4px #4099ff;
+}

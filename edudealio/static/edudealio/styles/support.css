@@ -1,0 +1,66 @@
+/* Custom styles for the contact form */
+
+.contact-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+#contactusdetail{
+    background: url("https://ik.imagekit.io/edudealio/EduDealio/emoji-image/autumn.png?updatedAt=1700508879525");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+}
+
+.icon-square {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+}
+
+.arrow-icon {
+    display: inline-block;
+    animation: moveArrow 1s infinite alternate;
+}
+
+@keyframes moveArrow {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(10px); /* Change the distance as needed */
+    }
+}
+
+/* Email icon animation */
+@keyframes email-icon-animation {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to the envelope icon */
+.envelope-icon {
+    animation: email-icon-animation 1s infinite;
+}
+
+.envelope-icon path {
+    fill: #0a53be;
+}
