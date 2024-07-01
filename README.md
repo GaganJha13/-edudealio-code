@@ -22,7 +22,7 @@ To run this application locally, follow these steps:
 
    ```sh
 
-      git clone https://github.com/EduDealio/edudealio-website.git
+      git clone https://github.com/Scholarsphere-Ventures-Pvt-Ltd/web-app-django.git
    ```
 
 2. Create a virtual environment (recommended):
